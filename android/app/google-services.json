@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "65305440632",
+    "firebase_url": "https://fwatery-ceb6b.firebaseio.com",
+    "project_id": "fwatery-ceb6b",
+    "storage_bucket": "fwatery-ceb6b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65305440632:android:e312d6682eaf0b0c7d188d",
+        "android_client_info": {
+          "package_name": "com.online.fwatery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "65305440632-aejtjcbe3rq93hchsodg4t8fvcftghoo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMRmZWar8OoE3xMQpkPTmFUr9UIRaTwLQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "65305440632-aejtjcbe3rq93hchsodg4t8fvcftghoo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "65305440632-187enaommri8jd1gm13ej9jend31fm7c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.line.fwatery"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
