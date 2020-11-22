@@ -36,7 +36,7 @@ dependencies:
   firebase_analytics: ^5.0.2
   firebase_auth : ^0.18.3
   firebase_storage: ^5.0.1
-  flutter_plugin_pdf_viewer: ^1.0.7
+  flutter_cached_pdfview: ^0.3.0
 
 
 

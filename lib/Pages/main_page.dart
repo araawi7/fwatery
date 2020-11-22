@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fwatery/Pages/setting_page.dart';
+import 'package:fwatery/routes/route_name.dart';
 import 'fwatery_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -17,9 +18,10 @@ class _MainPageState extends State<MainPage> {
   Future _scanQR() async {
     try {
       String qrResult = await BarcodeScanner.scan();
-      setState(() {
-        result = qrResult;
-      });
+      Navigator.pushNamed(context, pdfUrlPageRoute, arguments: qrResult);
+      // setState(() {
+      //   result = qrResult;
+      // });
     } on PlatformException catch (ex) {
       if (ex.code == BarcodeScanner.CameraAccessDenied) {
         setState(() {

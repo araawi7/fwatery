@@ -9,6 +9,7 @@ import 'package:fwatery/Pages/fwatery_page.dart';
 import 'package:fwatery/Pages/login_page.dart';
 import 'package:fwatery/Pages/main_page.dart';
 import 'package:fwatery/Pages/not_found.dart';
+import 'package:fwatery/Pages/pdf_view.dart';
 import 'package:fwatery/Pages/setting_page.dart';
 import 'package:fwatery/Pages/singup_page.dart';
 import 'package:fwatery/routes/route_name.dart';
@@ -38,7 +39,11 @@ class CustomRoute{
         return MaterialPageRoute(builder: (_)=> ContactPage());
       case aboutPageRoute:
         return MaterialPageRoute(builder: (_)=> AboutPage());
-
+      case pdfUrlPageRoute:
+        return MaterialPageRoute(
+            fullscreenDialog: true,
+            builder: (_) => PdfViewUrl(url: settings.arguments),
+            settings: settings);
 
 
     }

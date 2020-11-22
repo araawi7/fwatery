@@ -11,6 +11,7 @@ const String contactPageRoute= 'Contact Page';
 const String aboutPageRoute= 'About Page';
 const String privacyPageRoute= 'Privacy Page';
 const String wrapPageRoute= 'Wrap Page';
+const String pdfUrlPageRoute= 'pdf url Page';
 
 
 
