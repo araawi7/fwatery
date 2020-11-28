@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fwatery/Pages/setting_page.dart';
 import 'package:fwatery/routes/route_name.dart';
-import 'fwatery_page.dart';
+import 'package:fwatery/services/local_database.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key}) : super(key: key);
@@ -15,9 +15,11 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   String result = "";
+
   Future _scanQR() async {
     try {
       String qrResult = await BarcodeScanner.scan();
+      addPdfToDatabase(qrResult);
       Navigator.pushNamed(context, pdfUrlPageRoute, arguments: qrResult);
       // setState(() {
       //   result = qrResult;
@@ -44,8 +46,9 @@ class _MainPageState extends State<MainPage> {
   }
 
   PageController _pageController = PageController();
-  List<Widget> _screens = [PdfViewUrl(url: "result"), SettingsPage()];
+
   int _selectedIndex = 0;
+
   void _onPageChanged(int index) {
     setState(() {
       _selectedIndex = index;
@@ -59,52 +62,67 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        controller: _pageController,
-        children: _screens,
-        onPageChanged: _onPageChanged,
-        physics: NeverScrollableScrollPhysics(),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: _onItemTapped,
-        backgroundColor: Colors.white,
-        type: BottomNavigationBarType.fixed,
-        iconSize: 40,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.picture_as_pdf,
-                color: _selectedIndex == 0 ? Colors.orangeAccent : Colors.grey),
-            // ignore: deprecated_member_use
-            title: Text(
-              'Foater',
-              style: TextStyle(
-                  color: _selectedIndex == 0 ? Colors.black : Colors.grey),
+        body: PageView(
+          controller: _pageController,
+          children: [
+            ListView(
+              children: getAllPdfUrls()
+                  .map((e) => ListTile(
+                        title: Text(
+                          e,
+                          style: TextStyle(color: Colors.amber),
+                        ),
+                        onTap: () => Navigator.pushNamed(
+                            context, pdfUrlPageRoute,
+                            arguments: e),
+                      ))
+                  .toList(),
             ),
-            backgroundColor: Colors.white,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings,
-                color: _selectedIndex == 1 ? Colors.orangeAccent : Colors.grey),
-            // ignore: deprecated_member_use
-            title: Text(
-              'Setting',
-              style: TextStyle(
-                  color: _selectedIndex == 1 ? Colors.black : Colors.grey),
+            SettingsPage()
+          ],
+          onPageChanged: _onPageChanged,
+          physics: NeverScrollableScrollPhysics(),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: _onItemTapped,
+          backgroundColor: Colors.white,
+          type: BottomNavigationBarType.fixed,
+          iconSize: 40,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.picture_as_pdf,
+                  color:
+                      _selectedIndex == 0 ? Colors.orangeAccent : Colors.grey),
+              // ignore: deprecated_member_use
+              title: Text(
+                'Foater',
+                style: TextStyle(
+                    color: _selectedIndex == 0 ? Colors.black : Colors.grey),
+              ),
+              backgroundColor: Colors.white,
             ),
-            backgroundColor: Colors.white,
-          ),
-        ],
-      ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: FloatingActionButton(
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings,
+                  color:
+                      _selectedIndex == 1 ? Colors.orangeAccent : Colors.grey),
+              // ignore: deprecated_member_use
+              title: Text(
+                'Setting',
+                style: TextStyle(
+                    color: _selectedIndex == 1 ? Colors.black : Colors.grey),
+              ),
+              backgroundColor: Colors.white,
+            ),
+          ],
+        ),
+        floatingActionButtonLocation:
+            FloatingActionButtonLocation.miniCenterDocked,
+        floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.camera_alt),
+            backgroundColor: Colors.orangeAccent,
+            onPressed: _scanQR) // popped from LoginScreen().
 
-        child: Icon(Icons.camera_alt),
-        backgroundColor: Colors.orangeAccent,
-        onPressed: _scanQR ) // popped from LoginScreen().
-
-      );
-
+        );
   }
 }
 
