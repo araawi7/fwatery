@@ -37,6 +37,8 @@ dependencies:
   firebase_auth : ^0.18.3
   firebase_storage: ^5.0.1
   flutter_cached_pdfview: ^0.3.0
+  auto_size_text : ^2.1.0
+  cloud_firestore: ^0.14.3+1
 
 
 
