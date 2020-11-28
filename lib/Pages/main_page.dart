@@ -44,7 +44,7 @@ class _MainPageState extends State<MainPage> {
   }
 
   PageController _pageController = PageController();
-  List<Widget> _screens = [FoaterPage(), SettingsPage()];
+  List<Widget> _screens = [PdfViewUrl(url: "result"), SettingsPage()];
   int _selectedIndex = 0;
   void _onPageChanged(int index) {
     setState(() {
