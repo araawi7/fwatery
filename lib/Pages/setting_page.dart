@@ -31,8 +31,10 @@ class _SettingsPageState extends State<SettingsPage> {
         child: ListView(
           children: [
 
-
-            buildAccountOptionRow1(context, "Account"),
+            SizedBox(
+              height: 60,
+            ),
+            buildAccountOptionRow1(context, "QA & Contact Us "),
             Divider(
               height: 15,
               thickness: 2,
@@ -40,15 +42,7 @@ class _SettingsPageState extends State<SettingsPage> {
             SizedBox(
               height: 10,
             ),
-            buildAccountOptionRow2(context, "QA & Contact Us "),
-            Divider(
-              height: 15,
-              thickness: 2,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            buildAccountOptionRow3(context, "About Us"),
+            buildAccountOptionRow2(context, "About Us"),
             Divider(
               height: 15,
               thickness: 2,
@@ -83,45 +77,6 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   buildAccountOptionRow1(BuildContext context, String title) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, accountPageRoute);
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 3.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: <Widget>[
-                Icon(
-                  Icons.edit_outlined,
-                  color: Colors.orangeAccent[100],
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.orangeAccent[100],
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
-            Icon(
-              Icons.arrow_forward_ios,
-              color: Colors.orangeAccent[100],
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  buildAccountOptionRow2(BuildContext context, String title) {
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, contactPageRoute);
@@ -160,7 +115,7 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  buildAccountOptionRow3(BuildContext context, String title) {
+  buildAccountOptionRow2(BuildContext context, String title) {
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, aboutPageRoute);
