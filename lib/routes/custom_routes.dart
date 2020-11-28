@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:fwatery/Pages/about_page.dart';
-import 'package:fwatery/Pages/account_page.dart';
 import 'package:fwatery/Pages/contact_page.dart';
 import 'package:fwatery/Pages/first_page.dart';
 import 'package:fwatery/Pages/forget_page.dart';
@@ -33,8 +32,6 @@ class CustomRoute{
         return MaterialPageRoute(builder: (_)=> FoaterPage());
       case settingPageRoute:
         return MaterialPageRoute(builder: (_)=> SettingsPage());
-      case accountPageRoute:
-        return MaterialPageRoute(builder: (_)=>AccountPage() );
       case contactPageRoute:
         return MaterialPageRoute(builder: (_)=> ContactPage());
       case aboutPageRoute:
