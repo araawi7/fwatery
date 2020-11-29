@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 
 class FoaterPage extends StatefulWidget {
   final String url;
