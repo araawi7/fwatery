@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:ext_storage/ext_storage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -38,7 +39,7 @@ class _PdfViewUrlState extends State<PdfViewUrl> {
             onPressed: () async {
               String path = await ExtStorage.getExternalStoragePublicDirectory(
                   ExtStorage.DIRECTORY_DOWNLOADS);
-              String fullPath = "$path/jarir.pdf";
+              String fullPath = "$path/.pdf";
               download2(dio, url, fullPath);
             },
           ),
@@ -59,7 +60,9 @@ class _PdfViewUrlState extends State<PdfViewUrl> {
             color: Colors.white,
           ),
           onPressed: () {
-            firestoreinstance.collection("PDFs").add({
+            FirebaseAuth auth = FirebaseAuth.instance;
+
+            firestoreinstance.collection("Users").doc(auth.currentUser.uid).collection("PDFs").add({
               "PdfName": "PDF",
               "PdfLink": url,
             }).then((value) {
